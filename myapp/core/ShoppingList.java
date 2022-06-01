@@ -26,7 +26,7 @@ public class ShoppingList {
     String[] terms = input.split(" ");
     String cmd = terms[0];
 
-    switch(cmd) {
+    switch(cmd.trim().toLowerCase()) {
       case "add":
       for (int i = 1; i < terms.length; i++){
         String itemToadd = terms[i];
@@ -50,13 +50,25 @@ public class ShoppingList {
         System.err.println("Please provide an index to delete");
       } else {
         delIndex = Integer.parseInt(terms[1]) - 1;
-        if (delIndex < cart.size()){
+        if (delIndex < cart.size()) {
           cart.remove(delIndex);
           System.out.println("Deleted");
-        } else {}
+        } else {
+          System.err.println("No such item");
+        }
       }
+      break;
 
+      case "end":
+          stop = true;
+          System.out.println("Bye bye! Thank you for shopping");
+          break;
 
+      default:
+      System.out.println("Unrecognised Command!. Please try again");
+      break;
+
+      
     }
 
 
